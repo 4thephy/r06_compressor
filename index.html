@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Doc Compressor - High Quality Document Compression</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <div class="logo-container">
+                <img src="logo.png" class="logo-img" alt="Smart Doc Compressor Logo" onerror="this.style.display='none'">
+            </div>
+            <div class="brand-name">Smart doc compressor</div>
+        </div>
+        <div class="banner-container">
+            <img src="banner.jpg" class="banner-img" alt="Document Compressor Banner">
+            <div class="banner-overlay">
+                <h1 class="banner-title">Optimize Your Documents Instantly</h1>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="glass-panel">
+            <div class="dropzone" id="dropzone">
+                <div class="dropzone-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                    </svg>
+                </div>
+                <h2 class="dropzone-text">Upload or crop your files</h2>
+                <p class="dropzone-subtext">Drag & drop your files anywhere in the window, or click to browse</p>
+                <button class="browse-btn" id="browse-btn">Browse Files</button>
+                <input type="file" id="file-input" multiple accept=".pdf,.ppt,.pptx,.doc,.docx,.hwp" style="display: none;">
+            </div>
+
+            <div class="formats-container">
+                <h3 class="formats-title">Supported Formats</h3>
+                <div class="formats-list">
+                    <div class="format-badge" data-type="pdf">
+                        <svg class="format-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                        </svg>
+                        <span>PDF</span>
+                    </div>
+                    <div class="format-badge" data-type="ppt">
+                        <svg class="format-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M7 3h10a2 2 0 012 2v14a2 2 0 01-2 2H7a2 2 0 01-2-2V5a2 2 0 012-2z" />
+                        </svg>
+                        <span>PPT</span>
+                    </div>
+                    <div class="format-badge" data-type="doc">
+                        <svg class="format-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        <span>DOC</span>
+                    </div>
+                    <div class="format-badge" data-type="hwp">
+                        <svg class="format-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                            <rect width="14" height="18" x="5" y="3" rx="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 9l3 3 3-3" />
+                        </svg>
+                        <span>HWP</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="files-section" id="files-section" style="display: none;">
+            <h2 class="section-title">Compression Queue</h2>
+            <div class="file-list" id="file-list"></div>
+        </section>
+    </main>
+
+    <div class="toast-container" id="toast-container"></div>
+
+    <footer>
+        <p>&copy; 2026 Smart doc compressor. All rights reserved.</p>
+    </footer>
+</body>
+</html>
