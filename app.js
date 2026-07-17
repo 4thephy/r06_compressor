@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Process a single file (generate UI and start compression)
     function processFile(file, ext) {
         const fileId = 'file-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
-        fileStore[fileId] = file;
+        fileStore[fileId] = { blob: file, name: file.name };
 
         // Create file list item
         const fileCard = document.createElement('div');
@@ -195,7 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     compressionOptions: { level: 9 }
                 });
 
-                fileStore[fileId] = compressedBlob;
+                fileStore[fileId] = { blob: compressedBlob, name: file.name };
                 finalizeCompression(fileId, file.size, compressedBlob.size);
                 return;
             }
@@ -275,7 +275,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 compressionOptions: { level: 9 }
             });
 
-            fileStore[fileId] = compressedBlob;
+            fileStore[fileId] = { blob: compressedBlob, name: file.name };
             finalizeCompression(fileId, file.size, compressedBlob.size);
 
         } catch (error) {
@@ -383,14 +383,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Trigger file download
     function downloadCompressed(fileId) {
-        const file = fileStore[fileId];
-        if (!file) return;
+        const fileItem = fileStore[fileId];
+        if (!fileItem) return;
 
         // Use the actual file bytes for downloading to keep the file valid
-        const blobUrl = URL.createObjectURL(file);
+        const blobUrl = URL.createObjectURL(fileItem.blob);
         const link = document.createElement('a');
         link.href = blobUrl;
-        link.download = `compressed ${file.name}`;
+        link.download = `compressed ${fileItem.name}`;
         
         document.body.appendChild(link);
         link.click();
