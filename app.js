@@ -242,11 +242,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     canvas.height = height;
                     ctx.drawImage(img, 0, 0, width, height);
                     
-                    // Export back to JPEG format with 0.5 quality (high compression ratio)
+                    // Detect if the image is PNG/GIF to preserve transparency (alpha channel)
+                    const lowerPath = path.toLowerCase();
+                    const isTransparentFormat = lowerPath.endsWith('.png') || lowerPath.endsWith('.gif');
+                    const mimeType = isTransparentFormat ? 'image/png' : 'image/jpeg';
+                    
                     const compressedImgBlob = await new Promise((resolve) => {
                         canvas.toBlob((blob) => {
                             resolve(blob || imgData); // fallback to original if toBlob fails
-                        }, 'image/jpeg', 0.5);
+                        }, mimeType, isTransparentFormat ? undefined : 0.5);
                     });
 
                     // Save compressed image back into zip
